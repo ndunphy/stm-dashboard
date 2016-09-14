@@ -2,7 +2,7 @@
 Student classroom management system for St. Thomas More (www.stmschoolpa.com)
 
 ## Installation
-1. Clone this repository - `git clone https://github.com/jamesvclements/stm-dashboard.git`
+1. Clone this repository - `git clone https://github.com/st-thomas-more/stm-dashboard.git`
 2. Install dependencies - `npm install`
 
 ## Usage
