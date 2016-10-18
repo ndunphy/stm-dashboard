@@ -18,7 +18,7 @@ export default class AuthService extends EventEmitter {
   _doAuthentication(authResult) {
     // Save user token
     this.setToken(authResult.idToken)
-    // Async load the user profile data TODO: convert to Promise?
+    // Async load the user profile data
     this.lock.getProfile(authResult.idToken, (error, profile) => {
       if (error) {
         console.error('Error loading the Profile', error)
