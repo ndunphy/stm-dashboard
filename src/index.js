@@ -11,9 +11,9 @@ import './index.css'
 const routes = makeRoutes()
 
 ReactDOM.render(
-  <App 
+  <App
     history={hashHistory}
     routes={routes}
-  />,
+    />,
   document.getElementById('root')
 )
