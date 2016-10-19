@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, IndexRedirect } from 'react-router'
 import AuthService from '../utils/AuthService'
 import Container from './Container'
-import Home from './Home/Home'
+import Landing from './Landing/Landing'
 import Login from './Login/Login'
 
 const auth = new AuthService(
@@ -18,10 +18,10 @@ const requireAuth = (nextState, replace) => {
 export const makeRoutes = () => {
   return (
     <Route path="/" component={Container} auth={auth}>
-      <IndexRedirect to="/home" />
-      <Route path="home" component={Home} onEnter={requireAuth} />
+      <IndexRedirect to="/landing" />
+      <Route path="landing" component={Landing} onEnter={requireAuth} />
       <Route path="login" component={Login} />
-      <Route path="acccess_token=:token" component={Login} />
+      <Route path="access_token=:token" component={Login} />
     </Route>
   )
 }
