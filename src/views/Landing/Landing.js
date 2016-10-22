@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react'
-import { Button } from 'react-bootstrap'
 import AuthService from '../../utils/AuthService'
-import ProfileDetails from '../../components/Profile/ProfileDetails'
-import styles from './Home.css'
+import './Landing.css'
 
-export class Home extends React.Component {
+export class Landing extends React.Component {
   static contextTypes = {
     router: PropTypes.object
   }
@@ -33,13 +31,12 @@ export class Home extends React.Component {
   render() {
     const { profile } = this.state
     return (
-      <div className={styles.root}>
-        <h2>Home</h2>
-        <ProfileDetails profile={profile}></ProfileDetails>
-        <Button onClick={this.logout.bind(this)}>Logout</Button>
+      <div className="root">
+        Hi{profile.given_name ? ` ${profile.given_name}` : ''}, 
+        welcome to the St. Thomas More Classroom Management System.
       </div>
     )
   }
 }
 
-export default Home
+export default Landing
