@@ -5,6 +5,7 @@ import Container from './Container'
 import Landing from './Landing/Landing'
 import Placement from './Placement/Placement'
 import Login from './Login/Login'
+import RunPlacements from './RunPlacements/RunPlacements'
 
 const auth = new AuthService(
   process.env.REACT_APP_AUTH0_CLIENT_ID,
@@ -22,6 +23,7 @@ export const makeRoutes = () => {
       <IndexRedirect to="/landing" />
       <Route path="landing" component={Landing} onEnter={requireAuth} />
       <Route path="placement" component={Placement} />
+      <Route path="runplacements" component={RunPlacements} />
       <Route path="login" component={Login} />
       <Route path="access_token=:token" component={Login} />
     </Route>
