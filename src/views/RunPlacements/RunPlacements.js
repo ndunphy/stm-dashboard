@@ -18,11 +18,11 @@ export class RunPlacements extends React.Component {
     {
       method: 'PUT',
     })
-    window.location = '#/placement'
+    window.location = '#/placement/' + grade
   }
 
   viewAlgorithm(grade) {
-    window.location = '#/placement'
+    window.location = '#/placement' + grade
   }
 
 
