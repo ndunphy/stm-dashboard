@@ -17,8 +17,9 @@ export class RunPlacements extends React.Component {
     fetch(process.env.REACT_APP_SERVER_ADDRESS + '/api/placements/' + grade, 
     {
       method: 'PUT',
+    }).then((response) => {
+      window.location = '#/placement/' + grade
     })
-    window.location = '#/placement/' + grade
   }
 
   viewAlgorithm(grade) {
