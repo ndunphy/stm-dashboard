@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
-import { ListGroup } from 'react-bootstrap'
+import { ListGroup , ListGroupItem} from 'react-bootstrap'
+import StudentListItem from '../Student/StudentListItem'
 
 export class Section extends React.Component {
   static propTypes = {
@@ -12,7 +13,15 @@ export class Section extends React.Component {
       <div>
         Teacher: { section.teacher }
         <ListGroup>
-          
+          {
+            section.students.map((student, i) => {
+              return (
+                <ListGroupItem key={i}>
+                  <StudentListItem student={student} />
+                </ListGroupItem>
+              )
+            })
+          }
         </ListGroup>
       </div>
     )
