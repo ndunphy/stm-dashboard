@@ -2,10 +2,10 @@ import React, { PropTypes as T } from 'react'
 import { PageHeader } from 'react-bootstrap'
 import AuthService from '../../utils/AuthService'
 import { ordinal } from '../../utils/Utils'
+import 'react-router'
 import './Placement.css'
 
-// placement will be passed this in the future
-const GRADE = 3
+
 
 export class Placement extends React.Component {
   static contextTypes = {
@@ -14,17 +14,21 @@ export class Placement extends React.Component {
 
   static propTypes = {
     auth: T.instanceOf(AuthService),
-    profile: T.object
+    profile: T.object,
   }
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       sections: []
     }
 
-    fetch(`http://localhost:8080/api/placement/${GRADE}`)
+    this.grade = props.params.grade
+    console.log(this.grade)
+    this.grade = parseInt(this.grade)
+
+    fetch(`http://localhost:8080/api/placement/${this.grade}`)
       .then(grade => {
         this.setState({
           sections: grade.sections
@@ -36,7 +40,7 @@ export class Placement extends React.Component {
     const { profile } = this.props
     return (
       <div className="root">
-        <PageHeader>{ordinal(GRADE)} Placement</PageHeader>
+        <PageHeader>{ordinal(this.grade)} Placement</PageHeader>
 
       </div>
     )
