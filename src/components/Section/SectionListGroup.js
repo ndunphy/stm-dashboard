@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { ListGroup , ListGroupItem} from 'react-bootstrap'
 import StudentListItem from '../Student/StudentListItem'
+import { round } from '../../utils/Utils'
 
 export class Section extends React.Component {
   static propTypes = {
@@ -9,9 +10,12 @@ export class Section extends React.Component {
 
   render() {
     const { section } = this.props
+    const { stats } = section
     return (
       <div>
-        Teacher: { section.teacher }
+        Teacher: { section.teacher }     
+        <br/>
+        Average Behavior: {round(stats.avgBehavior, 2)}
         <ListGroup>
           {
             section.students.map((student, i) => {

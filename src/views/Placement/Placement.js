@@ -1,8 +1,8 @@
 import React, { PropTypes as T } from 'react'
-import { PageHeader } from 'react-bootstrap'
+import { PageHeader, Grid, Row, Col } from 'react-bootstrap'
 import AuthService from '../../utils/AuthService'
 import { ordinal } from '../../utils/Utils'
-import Section from '../../components/Section/Section'
+import SectionListGroup from '../../components/Section/SectionListGroup'
 import './Placement.css'
 
 export class Placement extends React.Component {
@@ -37,15 +37,20 @@ export class Placement extends React.Component {
   }
 
   render() {
+    const { grade } = this.props.params
     const { placement } = this.state
     return (
       <div className="root">
-        <PageHeader>{ordinal(this.props.params.grade)} Placement</PageHeader>
-        {
-          placement.sections.map((section, i) => {
-            return <Section key={i} section={section} />
-          })
-        }
+        <PageHeader>{ordinal(grade)} Placement</PageHeader>
+        <Grid>
+          <Row>
+            {
+              placement.sections.map((section, i) => {
+                return <Col key={i} xs={3}><SectionListGroup section={section}></SectionListGroup></Col>
+              })
+            }
+          </Row>
+        </Grid>
       </div>
     )
   }
