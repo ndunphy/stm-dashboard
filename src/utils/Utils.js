@@ -1,4 +1,5 @@
 export function ordinal(grade) {
+  grade = parseInt(grade, 10)
   switch(grade) {
     case 0:
       return 'Kindergarten'
