@@ -1,9 +1,13 @@
 import React, { PropTypes as T } from 'react'
+import { PageHeader } from 'react-bootstrap'
 import AuthService from '../../utils/AuthService'
-import { Link } from 'react-router'
-import './Landing.css'
+import { ordinal } from '../../utils/Utils'
+import './Placement.css'
 
-export class Landing extends React.Component {
+// placement will be passed this in the future
+const GRADE = 3
+
+export class Placement extends React.Component {
   static contextTypes = {
     router: T.object
   }
@@ -17,13 +21,11 @@ export class Landing extends React.Component {
     const { profile } = this.props
     return (
       <div className="root">
-        Hi{profile.given_name ? ` ${profile.given_name}` : ''}, 
-        welcome to the St. Thomas More Classroom Management System.
-        <br/>
-        Go to classroom <Link to="/placement">placement</Link>.
+        <PageHeader>{ordinal(GRADE)} Placement</PageHeader>
+
       </div>
     )
   }
 }
 
-export default Landing
+export default Placement

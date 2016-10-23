@@ -3,6 +3,7 @@ import { Route, IndexRedirect } from 'react-router'
 import AuthService from '../utils/AuthService'
 import Container from './Container'
 import Landing from './Landing/Landing'
+import Placement from './Placement/Placement'
 import Login from './Login/Login'
 
 const auth = new AuthService(
@@ -20,6 +21,7 @@ export const makeRoutes = () => {
     <Route path="/" component={Container} auth={auth}>
       <IndexRedirect to="/landing" />
       <Route path="landing" component={Landing} onEnter={requireAuth} />
+      <Route path="placement" component={Placement} />
       <Route path="login" component={Login} />
       <Route path="access_token=:token" component={Login} />
     </Route>

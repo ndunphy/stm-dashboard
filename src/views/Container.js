@@ -7,6 +7,18 @@ export class Container extends React.Component {
     router: T.object
   }
 
+  constructor(props, context) {
+    super(props, context)
+
+    this.state = {
+      profile: props.route.auth.getProfile()
+    }
+
+    props.route.auth.on('profile_updated', profile => {
+      this.setState({ profile: profile })
+    })
+  }
+
   loggedIn() {
     return this.props.route.auth.loggedIn()
   }
@@ -28,8 +40,8 @@ export class Container extends React.Component {
     let children = null
     if (this.props.children) {
       children = React.cloneElement(this.props.children, {
-        // Send auth instance to children
-        auth: this.props.route.auth
+        auth: this.props.route.auth,
+        profile: this.state.profile
       })
     }
 
