@@ -20,7 +20,7 @@ export class Landing extends React.Component {
         Hi{profile.given_name ? ` ${profile.given_name}` : ''}, 
         welcome to the St. Thomas More Classroom Management System.
         <br/>
-        Go to classroom <Link to="/placement/0">placement</Link>.
+        Go to classroom <Link to="/runplacements">placement</Link>.
       </div>
     )
   }
