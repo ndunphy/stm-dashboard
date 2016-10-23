@@ -4,9 +4,6 @@ import AuthService from '../../utils/AuthService'
 import { ordinal } from '../../utils/Utils'
 import './Placement.css'
 
-// placement will be passed this in the future
-const GRADE = 3
-
 export class Placement extends React.Component {
   static contextTypes = {
     router: T.object
@@ -14,15 +11,32 @@ export class Placement extends React.Component {
 
   static propTypes = {
     auth: T.instanceOf(AuthService),
-    profile: T.object
+    profile: T.object,
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      placement: {}
+    }
+
+    fetch(`http://localhost:8080/api/placements/${this.props.params.grade}`, {
+      method: 'GET'
+    }).then(response => {
+      response.json().then(placement => {
+        this.setState({
+          placement: placement
+        })
+      })
+    })
   }
 
   render() {
     const { profile } = this.props
     return (
       <div className="root">
-        <PageHeader>{ordinal(GRADE)} Placement</PageHeader>
-
+        <PageHeader>{ordinal(this.props.params.grade)} Placement</PageHeader>
       </div>
     )
   }
