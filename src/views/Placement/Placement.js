@@ -17,6 +17,21 @@ export class Placement extends React.Component {
     profile: T.object
   }
 
+  constructor() {
+    super()
+
+    this.state = {
+      sections: []
+    }
+
+    fetch(`http://localhost:8080/api/placement/${GRADE}`)
+      .then(grade => {
+        this.setState({
+          sections: grade.sections
+        })
+      })
+  }
+
   render() {
     const { profile } = this.props
     return (
