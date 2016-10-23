@@ -22,7 +22,7 @@ export class RunPlacements extends React.Component {
   }
 
   viewAlgorithm(grade) {
-    window.location = '#/placement' + grade
+    window.location = '#/placement/' + grade
   }
 
 
