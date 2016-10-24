@@ -22,7 +22,7 @@ export const makeRoutes = () => {
     <Route path="/" component={Container} auth={auth}>
       <IndexRedirect to="/landing" />
       <Route path="landing" component={Landing} onEnter={requireAuth} />
-      <Route path="runplacements" component={RunPlacements} />
+      <Route path="run-placements" component={RunPlacements} />
       <Route path="placement/:grade" component={Placement} />
       <Route path="login" component={Login} />
       <Route path="access_token=:token" component={Login} />
