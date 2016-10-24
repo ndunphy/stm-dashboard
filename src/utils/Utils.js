@@ -46,6 +46,16 @@ export function forHuman(key) {
       return 'Average Age'
     case 'potentialDelays':
       return 'Potential Delays'
+    case 'advancedMath':
+      return 'Advanced Math'
+    case 'medicalConcern':
+      return 'Medical Concern'
+    case 'facultyStudent':
+      return 'Faculty Students'
+    case 'newStudent':
+      return 'New Students'
+    case 'testAvg':
+      return 'Average Score'
     default:
       return key
   }
