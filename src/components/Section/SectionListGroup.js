@@ -14,7 +14,7 @@ export class Section extends React.Component {
     return (
       <div>
         <h5>Teacher: {section.teacher}</h5>
-        <Panel header="Stats">
+        <Panel header="Statistics">
           <ListGroup fill>
             <ListGroupItem>
               Size: {section.students.length}
