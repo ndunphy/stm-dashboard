@@ -28,7 +28,7 @@ export function round(value, decimals) {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals)
 }
 
-export function forHuman(key) {
+export function forHumanStats(key) {
   switch(key) {
     case 'avgBehavior':
       return 'Average Behavior'
@@ -59,4 +59,48 @@ export function forHuman(key) {
     default:
       return key
   }
+}
+
+export function forHumanAttr(key) {
+  switch(key){
+    case 'sex':
+      return 'Gender'
+    case 'potentialDelays':
+      return 'Potential Delay'
+    case 'advancedMath':
+      return 'Advanced Math'
+    case 'medicalConcern':
+      return 'Medical Concern'
+    case 'facultyStudent':
+      return 'Faculty Student'
+    case 'newStudent':
+      return 'New Student'
+    case 'hmp':
+      return 'High Maintenence Parent'
+    case 'behavior':
+      return 'Behavior'
+    case 'workEthic':
+      return 'Work Ethic'
+    case 'mathBench':
+      return 'Math Benchmark'
+    case 'cogAT':
+      return 'cogAT'
+    case 'elaTotal':
+      return "ELA Total"
+    case 'mathTotal':
+      return 'Math Total'
+    case 'asp':
+      return 'ASP' 
+    case 'behaviorScore':
+      return 'Behavior Score' 
+    default:
+      return key
+  }
+}
+
+export function studentDisplayKey(key){
+  if(key in ["name", "firstName", "lastName", "weightedScore", "weighted_score", "behavior_score"])
+    return false
+  else
+    return true
 }

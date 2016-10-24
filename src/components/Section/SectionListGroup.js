@@ -22,7 +22,7 @@ export class Section extends React.Component {
             {
               Object.keys(stats).map((key, i) => {
                 let val = (isNaN(stats[key])) ? stats[key] : Utils.round(stats[key], 2)
-                return <ListGroupItem>{`${Utils.forHuman(key)}: ${val}`}</ListGroupItem>
+                return <ListGroupItem>{`${Utils.forHumanStats(key)}: ${val}`}</ListGroupItem>
               })
             }
           </ListGroup>
