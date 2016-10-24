@@ -24,7 +24,7 @@ export class Placement extends React.Component {
       }
     }
 
-    fetch(`http://localhost:8080/api/placements/${this.props.params.grade}`, {
+    fetch(`${process.env.REACT_APP_SERVER_ADDRESS}/api/placements/${this.props.params.grade}`, {
       method: 'GET'
     }).then(response => {
       response.json().then(placement => {

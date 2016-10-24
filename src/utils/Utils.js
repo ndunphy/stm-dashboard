@@ -27,3 +27,26 @@ export function ordinal(grade) {
 export function round(value, decimals) {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals)
 }
+
+export function forHuman(key) {
+  switch(key) {
+    case 'avgBehavior':
+      return 'Average Behavior'
+    case 'avgTestScore':
+      return 'Average Score'
+    case 'femaleCount':
+      return 'Girls'
+    case 'maleCount':
+      return 'Boys'
+    case 'genderRatio':
+      return 'M/F'
+    case 'avgDial4':
+      return 'Average Dial 4'
+    case 'avgAge':
+      return 'Average Age'
+    case 'potentialDelays':
+      return 'Potential Delays'
+    default:
+      return key
+  }
+}

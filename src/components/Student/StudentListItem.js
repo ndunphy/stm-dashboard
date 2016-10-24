@@ -9,7 +9,11 @@ export class StudentListItem extends React.Component {
     const { student } = this.props
     return (
       <div>
-        {student.firstName} {student.lastName}
+        {
+          // temp solution until JSON is standardized
+          student.hasOwnProperty('name') 
+          ? student.name : `${student.firstName} ${student.lastName}`
+        }
       </div>
     )
   }
