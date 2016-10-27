@@ -18,12 +18,11 @@ export class StudentListItem extends React.Component {
     const student = this.props.student
     const id = this.props.id
     return (
-        <Accordion>
           <Panel header={
             // temp solution until JSON is standardized
             student.hasOwnProperty('name') 
             ? student.name : `${student.firstName} ${student.lastName}`
-          } eventKey={id}>
+          } collapsible expanded={this.state.open} onClick={ ()=> this.setState({ open: !this.state.open })}>
             <ListGroup>
               {
                 console.log('this panels id is: ' + id)
@@ -35,7 +34,6 @@ export class StudentListItem extends React.Component {
               }
             </ListGroup>
           </Panel>
-        </Accordion>
     )
   }
 }
