@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Panel, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Panel, ListGroup, ListGroupItem, Accordion } from 'react-bootstrap'
 import * as Utils from '../../utils/Utils'
 
 export class StudentListItem extends React.Component {
@@ -15,29 +15,27 @@ export class StudentListItem extends React.Component {
   }
 
   render() {
-    const { student } = this.props
+    const student = this.props.student
+    const id = this.props.id
     return (
-      <div>
-        <Button onClick={ ()=> this.setState({ open: !this.state.open })}>
-          {
-          // temp solution until JSON is standardized
-          student.hasOwnProperty('name') 
-          ? student.name : `${student.firstName} ${student.lastName}`
-          }
-        </Button>
-        <Panel collapsible expanded={this.state.open}>
-          <ListGroup>
-            {
-              Object.keys(student).map((key, i) => {
-                if(key !== "name" && key !== "firstName" && key !== "lastName" && key !== "weighted_score" && key !== "behavior_score")
-                  return <ListGroupItem key={i}>{`${Utils.forHumanAttr(key)}: ${student[key]}`}</ListGroupItem>
-                else
-                  return
-              })
-            }
-          </ListGroup>
-        </Panel>
-      </div>
+        <Accordion>
+          <Panel header={
+            // temp solution until JSON is standardized
+            student.hasOwnProperty('name') 
+            ? student.name : `${student.firstName} ${student.lastName}`
+          } eventKey={id}>
+            <ListGroup>
+              {
+                console.log('this panels id is: ' + id)
+              }{
+                Object.keys(student).map((key, i) => {
+                  if(key !== "name" && key !== "firstName" && key !== "lastName" && key !== "weighted_score" && key !== "behavior_score")
+                    return <ListGroupItem key={i}>{`${Utils.forHumanAttr(key)}: ${student[key]}`}</ListGroupItem>
+                })
+              }
+            </ListGroup>
+          </Panel>
+        </Accordion>
     )
   }
 }

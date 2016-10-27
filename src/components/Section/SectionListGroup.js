@@ -9,8 +9,9 @@ export class Section extends React.Component {
   }
 
   render() {
-    const { section } = this.props
+    const section = this.props.section
     const { stats } = section
+    const id = this.props.id
     return (
       <div>
         <h5>Teacher: {section.teacher}</h5>
@@ -28,17 +29,13 @@ export class Section extends React.Component {
           </ListGroup>
         </Panel>
         <Panel header="Students">
-          <ListGroup fill>
-            {
-              section.students.map((student, i) => {
-                return (
-                  <ListGroupItem key={i}>
-                    <StudentListItem student={student} />
-                  </ListGroupItem>
-                )
-              })
-            }
-          </ListGroup>
+          {
+            section.students.map((student, i) => {
+              return (
+                  <StudentListItem student={student} id={id + i} />
+              )
+            })
+          }
         </Panel>
       </div>
     )
