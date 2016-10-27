@@ -81,7 +81,7 @@ export function forHumanAttr(key, val) {
   switch(key){
     case 'sex':
       return 'Gender : ' + val
-    case 'potentialDelays':
+    case 'potentialDelay':
       return 'Potential Delay : ' + getYN(val)
     case 'advancedMath':
       return 'Advanced Math : ' + getYN(val)
@@ -109,6 +109,8 @@ export function forHumanAttr(key, val) {
       return 'Math Total : ' + val
     case 'asp':
       return 'ASP : ' + getYN(val)
+    case 'behaviorObservation':
+      return 'Behavior Observation : ' + val
     default:
       return key + " : " + val
   }

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Panel, ListGroup, ListGroupItem, Accordion } from 'react-bootstrap'
+import { Panel, ListGroup, ListGroupItem, Accordion, Button} from 'react-bootstrap'
 import * as Utils from '../../utils/Utils'
 
 export class StudentListItem extends React.Component {
@@ -10,8 +10,21 @@ export class StudentListItem extends React.Component {
   constructor(...args) {
     super(...args);
     this.state = {
-      open: false
+      open: false,
+      button: false
     };
+  }
+
+  panelClick(event){
+    console.log("button: " + this.state.button)
+    if(!this.state.button)
+      this.setState({ open: !this.state.open })
+    this.setState({ button: false })
+  }
+
+  buttonClick(){
+    alert("this is not implemented yet")
+    this.setState({ button: true })
   }
 
   render() {
@@ -31,6 +44,7 @@ export class StudentListItem extends React.Component {
                 })
               }
             </ListGroup>
+            <Button bsSize="small" onClick={() =>  alert("this is not implemented yet")}>Go to Student Card</Button>
           </Panel>
     )
   }
