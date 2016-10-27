@@ -25,11 +25,9 @@ export class StudentListItem extends React.Component {
           } collapsible expanded={this.state.open} onClick={ ()=> this.setState({ open: !this.state.open })}>
             <ListGroup>
               {
-                console.log('this panels id is: ' + id)
-              }{
                 Object.keys(student).map((key, i) => {
-                  if(key !== "name" && key !== "firstName" && key !== "lastName" && key !== "weighted_score" && key !== "behavior_score")
-                    return <ListGroupItem key={i}>{`${Utils.forHumanAttr(key)}: ${student[key]}`}</ListGroupItem>
+                  if(Utils.studentDisplayKey(key))
+                    return <ListGroupItem key={i}>{`${Utils.forHumanAttr(key, student[key])}`}</ListGroupItem>
                 })
               }
             </ListGroup>

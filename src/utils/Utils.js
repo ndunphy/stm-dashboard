@@ -61,46 +61,63 @@ export function forHumanStats(key) {
   }
 }
 
-export function forHumanAttr(key) {
+function getYN(val){
+  if(val === 1)
+    return 'Yes'
+  else
+    return 'No'
+}
+
+function getCheckMinusPlus(val){
+  if(val === 0)
+    return '-'
+  else if(val === 1)
+    return '\u2713'
+  else
+    return '+'
+}
+
+export function forHumanAttr(key, val) {
   switch(key){
     case 'sex':
-      return 'Gender'
+      return 'Gender : ' + val
     case 'potentialDelays':
-      return 'Potential Delay'
+      return 'Potential Delay : ' + getYN(val)
     case 'advancedMath':
-      return 'Advanced Math'
+      return 'Advanced Math : ' + getYN(val)
     case 'medicalConcern':
-      return 'Medical Concern'
+      return 'Medical Concern : ' + getYN(val)
     case 'facultyStudent':
-      return 'Faculty Student'
+      return 'Faculty Student : ' + getYN(val)
     case 'newStudent':
-      return 'New Student'
+      return 'New Student : ' + getYN(val)
     case 'hmp':
-      return 'High Maintenence Parent'
+      return 'High Maintenence Parent : ' + getYN(val)
     case 'behavior':
-      return 'Behavior'
+      return 'Behavior: ' + getCheckMinusPlus(val)
     case 'workEthic':
-      return 'Work Ethic'
+      return 'Work Ethic: ' + getCheckMinusPlus(val)
     case 'mathBench':
-      return 'Math Benchmark'
+      return 'Math Benchmark : ' + val
     case 'cogAT':
-      return 'cogAT'
+      return 'cogAT : ' + val
+    case 'dra':
+      return 'DRA : ' + val
     case 'elaTotal':
-      return "ELA Total"
+      return 'ELA Total : ' + val
     case 'mathTotal':
-      return 'Math Total'
+      return 'Math Total : ' + val
     case 'asp':
-      return 'ASP' 
-    case 'behaviorScore':
-      return 'Behavior Score' 
+      return 'ASP : ' + getYN(val)
     default:
-      return key
+      return key + " : " + val
   }
 }
 
 export function studentDisplayKey(key){
-  if(key in ["name", "firstName", "lastName", "weightedScore", "weighted_score", "behavior_score"])
+  if(["name", "firstName", "lastName", "weightedScore", "weighted_score", "behavior_score", "behaviorScore"].includes(key)){
     return false
+  }
   else
     return true
 }
