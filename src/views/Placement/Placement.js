@@ -33,7 +33,6 @@ export class Placement extends React.Component {
         })
       })
     })
-    
   }
 
   render() {
@@ -46,7 +45,7 @@ export class Placement extends React.Component {
           <Row>
             {
               placement.sections.map((section, i) => {
-                return <Col key={i} xs={3}><SectionListGroup section={section}></SectionListGroup></Col>
+                return <Col key={i} md={placement.sections.length === 3 ? 4 : 3} xs={12}><SectionListGroup section={section}></SectionListGroup></Col>
               })
             }
           </Row>

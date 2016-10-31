@@ -28,35 +28,19 @@ export function round(value, decimals) {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals)
 }
 
-export function forHuman(key) {
-  switch(key) {
-    case 'avgBehavior':
-      return 'Average Behavior'
-    case 'avgTestScore':
-      return 'Average Score'
-    case 'femaleCount':
-      return 'Girls'
-    case 'maleCount':
-      return 'Boys'
-    case 'genderRatio':
-      return 'M/F'
-    case 'avgDial4':
-      return 'Average Dial 4'
-    case 'avgAge':
-      return 'Average Age'
-    case 'potentialDelays':
-      return 'Potential Delays'
-    case 'advancedMath':
-      return 'Advanced Math'
-    case 'medicalConcern':
-      return 'Medical Concern'
-    case 'facultyStudent':
-      return 'Faculty Students'
-    case 'newStudent':
-      return 'New Students'
-    case 'testAvg':
-      return 'Average Score'
-    default:
-      return key
-  }
+export const translations = {
+  avgBehavior: 'Average Behavior',
+  avgTestScore: 'Average Score',
+  females: 'Girls',
+  males: 'Males',
+  genderRatio: 'M/F',
+  avgDial4: 'Average Dial 4',
+  avgAge: 'Average Age',
+  potentialDelays: 'Potential Delays',
+  advancedMath: 'Advanced Math',
+  medicalConcern: 'Medical Concern',
+  facultyStudent: 'Faculty Students',
+  newStudent: 'New Students',
+  testAvg: 'Average Score'
 }
+
