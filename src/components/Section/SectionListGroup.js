@@ -11,19 +11,22 @@ export class Section extends React.Component {
   render() {
     const section = this.props.section
     const { stats } = section
-    const id = this.props.id
     return (
       <div>
-        <h5>Teacher: {section.teacher}</h5>
+        <h5>Teacher: {section.teacher.name}</h5>
         <Panel header="Statistics">
           <ListGroup fill>
             <ListGroupItem>
               Size: {section.students.length}
             </ListGroupItem>
             {
-              Object.keys(stats).map((key, i) => {
+              // only stats in the translations object are displayed
+              Object.keys(stats).filter(key => key in Utils.translations).map((key, i) => {
+                // round numbers to 2 decimals
                 let val = (isNaN(stats[key])) ? stats[key] : Utils.round(stats[key], 2)
-                return <ListGroupItem>{`${Utils.forHumanStats(key)}: ${val}`}</ListGroupItem>
+                // convert age in months to X yr. Y mo.
+                val = (key === 'avgAge') ? `${Utils.round(val / 12, 0)} y. ${Utils.round(val % 12, 0)} mo.` : val
+                return <ListGroupItem key={i}>{`${Utils.translations[key]}: ${val}`}</ListGroupItem>
               })
             }
           </ListGroup>
@@ -31,9 +34,7 @@ export class Section extends React.Component {
         <Panel header="Students">
           {
             section.students.map((student, i) => {
-              return (
-                  <StudentListItem student={student} id={id + i} />
-              )
+              return <StudentListItem student={student} key={i}/>
             })
           }
         </Panel>

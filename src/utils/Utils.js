@@ -28,44 +28,8 @@ export function round(value, decimals) {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals)
 }
 
-export function forHumanStats(key) {
-  switch(key) {
-    case 'avgBehavior':
-      return 'Average Behavior'
-    case 'avgTestScore':
-      return 'Average Score'
-    case 'femaleCount':
-      return 'Girls'
-    case 'maleCount':
-      return 'Boys'
-    case 'genderRatio':
-      return 'M/F'
-    case 'avgDial4':
-      return 'Average Dial 4'
-    case 'avgAge':
-      return 'Average Age'
-    case 'potentialDelays':
-      return 'Potential Delays'
-    case 'advancedMath':
-      return 'Advanced Math'
-    case 'medicalConcern':
-      return 'Medical Concern'
-    case 'facultyStudent':
-      return 'Faculty Students'
-    case 'newStudent':
-      return 'New Students'
-    case 'testAvg':
-      return 'Average Score'
-    default:
-      return key
-  }
-}
-
 function getYN(val){
-  if(val === 1)
-    return 'Yes'
-  else
-    return 'No'
+  return (val === 1) ? 'Yes' : 'No'
 }
 
 function getCheckMinusPlus(val){
@@ -112,14 +76,33 @@ export function forHumanAttr(key, val) {
     case 'behaviorObservation':
       return 'Behavior Observation : ' + val
     default:
-      return key + " : " + val
+      return key + ' : ' + val
   }
 }
 
 export function studentDisplayKey(key){
-  if(["name", "firstName", "lastName", "weightedScore", "weighted_score", "behavior_score", "behaviorScore"].includes(key)){
+  if(['name', 'firstName', 'lastName', 'weightedScore', 'weighted_score', 'behavior_score', 'behaviorScore'].includes(key)){
     return false
   }
   else
     return true
 }
+
+export const translations = {
+  avgBehavior: 'Average Behavior',
+  avgTestScore: 'Average Score',
+  females: 'Girls',
+  males: 'Boys',
+  genderRatio: 'M/F',
+  avgDial4: 'Average Dial 4',
+  avgAge: 'Average Age',
+  potentialDelays: 'Potential Delays',
+  advancedMaths: 'Advanced Math',
+  medicalConcerns: 'Medical Concerns',
+  facultyStudents: 'Faculty Students',
+  newStudent: 'New Students',
+  testAvg: 'Average Score',
+  asps: 'ASP',
+  hmps: 'HMP'
+}
+
