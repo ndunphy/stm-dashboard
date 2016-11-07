@@ -32,15 +32,17 @@ export const translations = {
   avgBehavior: 'Average Behavior',
   avgTestScore: 'Average Score',
   females: 'Girls',
-  males: 'Males',
+  males: 'Boys',
   genderRatio: 'M/F',
   avgDial4: 'Average Dial 4',
   avgAge: 'Average Age',
   potentialDelays: 'Potential Delays',
-  advancedMath: 'Advanced Math',
-  medicalConcern: 'Medical Concern',
-  facultyStudent: 'Faculty Students',
+  advancedMaths: 'Advanced Math',
+  medicalConcerns: 'Medical Concerns',
+  facultyStudents: 'Faculty Students',
   newStudent: 'New Students',
-  testAvg: 'Average Score'
+  testAvg: 'Average Score',
+  asps: 'ASP',
+  hmps: 'HMP'
 }
 

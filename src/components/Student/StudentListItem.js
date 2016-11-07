@@ -10,7 +10,7 @@ export class StudentListItem extends React.Component {
     return (
       <div>
         {
-          // temp solution until JSON is standardized
+          // TODO : remove when JSON is standardized
           student.hasOwnProperty('name') 
           ? student.name : `${student.firstName} ${student.lastName}`
         }

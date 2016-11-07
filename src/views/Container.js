@@ -50,7 +50,7 @@ export class Container extends React.Component {
         <Navbar fluid>
           <Navbar.Header>
             <Navbar.Brand>
-              <Link to="/landing">St. Thomas More Classroom Management</Link>
+              <Link to="/landing">St. Thomas More Student Management</Link>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

@@ -18,7 +18,7 @@ export class Landing extends React.Component {
     return (
       <div className="root">
         Hi{profile.given_name ? ` ${profile.given_name}` : ''}, 
-        welcome to the St. Thomas More Classroom Management System.
+        welcome to the St. Thomas More Student Management System.
         <br/>
         Go to classroom <Link to="/run-placements">placement</Link>.
       </div>
