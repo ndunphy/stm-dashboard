@@ -18,7 +18,7 @@ export function ordinal(grade) {
     case 7:
       return '7th Grade'
     case 8:
-      return '8rd Grade'
+      return '8th Grade'
     default:
       return null
   }
