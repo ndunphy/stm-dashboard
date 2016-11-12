@@ -16,17 +16,6 @@ export class StudentListItem extends React.Component {
     }
   }
 
-  panelClick(event) {
-    if (!this.state.button)
-      this.setState({ open: !this.state.open })
-    this.setState({ button: false })
-  }
-
-  buttonClick() {
-    alert('this is not implemented yet')
-    this.setState({ button: true })
-  }
-
   render() {
     const student = this.props.student
     return (
