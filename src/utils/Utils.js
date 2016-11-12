@@ -82,6 +82,7 @@ export function forHumanAttr(key, val) {
       const mark = (val === 0) ? '-' : (val === 1) ? '\u2713' : '+'
       return `${studentTranslations[key]}: ${mark}`
     case 'sex':
+      return `${studentTranslations[key]}: ${(val === 'F') ? '\u2640' : '\u2642'}`
     case 'mathBench':
     case 'cogAT':
     case 'dra':
@@ -95,6 +96,53 @@ export function forHumanAttr(key, val) {
     default:
       return `${key}: ${val}`
   }
+}
+
+const sectionStatPrecedence = {
+  avgBehavior: 4,
+  avgTestScore: 3,
+  females: 0,
+  males: 1,
+  genderRatio: 2,
+  avgDial4: 4,
+  avgAge: 5,
+  potentialDelays: 6,
+  advancedMaths: 8,
+  medicalConcerns: 7,
+  facultyStudents: 9,
+  newStudents: 10,
+  testAvg: 4,
+  asps: 11,
+  hmps: 12
+}
+
+export function sortSectionStats(a, b) {
+    return sectionStatPrecedence[a] - sectionStatPrecedence[b]
+}
+
+const studentStatPrecendence = {
+  sex: 0,
+  potentialDelay: 9,
+  advancedMath: 11,
+  medicalConcern: 10,
+  facultyStudent: 12,
+  newStudent: 13,
+  hmp: 15,
+  behavior: 7,
+  workEthic: 8,
+  mathBench: 2,
+  cogAT: 3,
+  dra: 4,
+  elaTotal: 5,
+  mathTotal: 6,
+  asp: 14,
+  behaviorObservation: 7,
+  dial4: 3,
+  age: 1
+}
+
+export function sortStudentStats(a, b) {
+  return studentStatPrecendence[a] - studentStatPrecendence[b]
 }
 
 

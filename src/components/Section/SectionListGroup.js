@@ -23,7 +23,7 @@ export class Section extends React.Component {
             </ListGroupItem>
             {
               // only stats in the translations object are displayed
-              Object.keys(stats).filter(key => key in Utils.sectionTranslations).map((key, i) => {
+              Object.keys(stats).filter(key => key in Utils.sectionTranslations).sort(Utils.sortSectionStats).map((key, i) => {
                 // round numbers to 2 decimals
                 let val = (isNaN(stats[key])) ? stats[key] : Utils.round(stats[key], 2)
                 // convert age in months to X yr. Y mo.

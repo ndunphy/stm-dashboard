@@ -42,7 +42,7 @@ export class StudentListItem extends React.Component {
         className="student-panel">
         <ListGroup fill className="student-stats">
           {
-            Object.keys(student).filter(key => key in Utils.studentTranslations).map((key, i) => {
+            Object.keys(student).filter(key => key in Utils.studentTranslations).sort(Utils.sortStudentStats).map((key, i) => {
               return <ListGroupItem key={i}>{`${Utils.forHumanAttr(key, student[key])}`}</ListGroupItem>
             })
           }
