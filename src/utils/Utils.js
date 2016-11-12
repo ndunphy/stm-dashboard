@@ -28,6 +28,40 @@ export function round(value, decimals) {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals)
 }
 
+export const translations = {
+  avgBehavior: 'Average Behavior',
+  avgTestScore: 'Average Score',
+  females: 'Girls',
+  males: 'Boys',
+  genderRatio: 'M/F',
+  avgDial4: 'Average Dial 4',
+  avgAge: 'Average Age',
+  potentialDelays: 'Potential Delays',
+  advancedMaths: 'Advanced Math',
+  medicalConcerns: 'Medical Concerns',
+  facultyStudents: 'Faculty Students',
+  newStudents: 'New Students',
+  testAvg: 'Average Score',
+  asps: 'ASP',
+  hmps: 'HMP',
+  sex: 'Gender',
+  potentialDelay: 'Potential Delay',
+  advancedMath: 'Advanced Math',
+  medicalConcern: 'Medical Concern',
+  facultyStudent: 'Faculty Student',
+  newStudent: 'New Student',
+  hmp: 'High Maintenence Parent',
+  behavior: 'Behavior',
+  workEthic: 'Work Ethic',
+  mathBench: 'Math Bench',
+  cogAT: 'cogAT',
+  dra: 'DRA',
+  elaTotal: 'ELA Total',
+  mathTotal: 'Math Total',
+  asp: 'ASP',
+  behaviorObservation: 'Behavior Observation'
+}
+
 function getYN(val){
   return (val === 1) ? 'Yes' : 'No'
 }
@@ -43,66 +77,32 @@ function getCheckMinusPlus(val){
 
 export function forHumanAttr(key, val) {
   switch(key){
-    case 'sex':
-      return 'Gender : ' + val
     case 'potentialDelay':
-      return 'Potential Delay : ' + getYN(val)
     case 'advancedMath':
-      return 'Advanced Math : ' + getYN(val)
     case 'medicalConcern':
-      return 'Medical Concern : ' + getYN(val)
     case 'facultyStudent':
-      return 'Faculty Student : ' + getYN(val)
     case 'newStudent':
-      return 'New Student : ' + getYN(val)
     case 'hmp':
-      return 'High Maintenence Parent : ' + getYN(val)
-    case 'behavior':
-      return 'Behavior: ' + getCheckMinusPlus(val)
-    case 'workEthic':
-      return 'Work Ethic: ' + getCheckMinusPlus(val)
-    case 'mathBench':
-      return 'Math Benchmark : ' + val
-    case 'cogAT':
-      return 'cogAT : ' + val
-    case 'dra':
-      return 'DRA : ' + val
-    case 'elaTotal':
-      return 'ELA Total : ' + val
-    case 'mathTotal':
-      return 'Math Total : ' + val
     case 'asp':
-      return 'ASP : ' + getYN(val)
+      return `${translations[key]}: ${getYN(val)}`
+    case 'behavior':
+    case 'workEthic':
+      return `${translations[key]}: ${getCheckMinusPlus(val)}`
+    case 'sex':
+    case 'mathBench':
+    case 'cogAT':
+    case 'dra':
+    case 'elaTotal':
+    case 'mathTotal':
     case 'behaviorObservation':
-      return 'Behavior Observation : ' + val
+      return `${translations[key]}: ${val}`
     default:
-      return key + ' : ' + val
+      return `${key}: ${val}`
   }
 }
 
 export function studentDisplayKey(key){
-  if(['name', 'firstName', 'lastName', 'weightedScore', 'weighted_score', 'behavior_score', 'behaviorScore'].includes(key)){
-    return false
-  }
-  else
-    return true
+  return !['name', 'firstName', 'lastName', 'weightedScore', 'weighted_score', 'behavior_score', 'behaviorScore'].includes(key)
 }
 
-export const translations = {
-  avgBehavior: 'Average Behavior',
-  avgTestScore: 'Average Score',
-  females: 'Girls',
-  males: 'Boys',
-  genderRatio: 'M/F',
-  avgDial4: 'Average Dial 4',
-  avgAge: 'Average Age',
-  potentialDelays: 'Potential Delays',
-  advancedMaths: 'Advanced Math',
-  medicalConcerns: 'Medical Concerns',
-  facultyStudents: 'Faculty Students',
-  newStudent: 'New Students',
-  testAvg: 'Average Score',
-  asps: 'ASP',
-  hmps: 'HMP'
-}
 
