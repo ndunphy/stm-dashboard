@@ -6,8 +6,7 @@ import './RunPlacements.css'
 
 export class RunPlacements extends React.Component {
   static propTypes = {
-    auth: T.instanceOf(AuthService),
-    profile: T.object
+    auth: T.instanceOf(AuthService)
   }
 
   render() {
