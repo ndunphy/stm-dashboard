@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Panel, ListGroup, ListGroupItem, Button } from 'react-bootstrap'
 import * as Utils from '../../utils/Utils'
+import './StudentListItem.css'
 
 export class StudentListItem extends React.Component {
   static propTypes = {
@@ -16,7 +17,6 @@ export class StudentListItem extends React.Component {
   }
 
   panelClick(event) {
-    console.log('button: ' + this.state.button)
     if (!this.state.button)
       this.setState({ open: !this.state.open })
     this.setState({ button: false })
@@ -30,19 +30,29 @@ export class StudentListItem extends React.Component {
   render() {
     const student = this.props.student
     return (
-      <Panel header={
-        // temp solution until JSON is standardized
-        student.hasOwnProperty('name')
-          ? student.name : `${student.firstName} ${student.lastName}`
-      } collapsible expanded={this.state.open} onClick={() => this.setState({ open: !this.state.open })}>
-        <ListGroup>
+      <Panel 
+        header={
+          // temp solution until JSON is standardized
+          student.hasOwnProperty('name')
+            ? student.name : `${student.firstName} ${student.lastName}`
+        } 
+        collapsible 
+        expanded={this.state.open} 
+        onClick={() => this.setState({ open: !this.state.open })}
+        className="student-panel">
+        <ListGroup fill className="student-stats">
           {
-            Object.keys(student).filter(key => Utils.studentDisplayKey(key)).map((key, i) => {
+            Object.keys(student).filter(key => key in Utils.studentTranslations).map((key, i) => {
               return <ListGroupItem key={i}>{`${Utils.forHumanAttr(key, student[key])}`}</ListGroupItem>
             })
           }
         </ListGroup>
-        <Button bsSize="small" onClick={() => alert('this is not implemented yet')}>Go to Student Card</Button>
+        <Button 
+          block
+          bsStyle="primary"
+          onClick={() => alert('this is not implemented yet')}>
+          View Card
+        </Button>
       </Panel>
     )
   }

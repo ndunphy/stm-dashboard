@@ -1,6 +1,6 @@
 export function ordinal(grade) {
   grade = parseInt(grade, 10)
-  switch(grade) {
+  switch (grade) {
     case 0:
       return 'Kindergarten'
     case 1:
@@ -25,10 +25,10 @@ export function ordinal(grade) {
 }
 
 export function round(value, decimals) {
-  return Number(Math.round(value+'e'+decimals)+'e-'+decimals)
+  return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals)
 }
 
-export const translations = {
+export const sectionTranslations = {
   avgBehavior: 'Average Behavior',
   avgTestScore: 'Average Score',
   females: 'Girls',
@@ -43,7 +43,10 @@ export const translations = {
   newStudents: 'New Students',
   testAvg: 'Average Score',
   asps: 'ASP',
-  hmps: 'HMP',
+  hmps: 'HMP'
+}
+
+export const studentTranslations = {
   sex: 'Gender',
   potentialDelay: 'Potential Delay',
   advancedMath: 'Advanced Math',
@@ -59,24 +62,13 @@ export const translations = {
   elaTotal: 'ELA Total',
   mathTotal: 'Math Total',
   asp: 'ASP',
-  behaviorObservation: 'Behavior Observation'
-}
-
-function getYN(val){
-  return (val === 1) ? 'Yes' : 'No'
-}
-
-function getCheckMinusPlus(val){
-  if(val === 0)
-    return '-'
-  else if(val === 1)
-    return '\u2713'
-  else
-    return '+'
+  behaviorObservation: 'Behavior Observation',
+  dial4: 'Dial 4',
+  age: 'Age'
 }
 
 export function forHumanAttr(key, val) {
-  switch(key){
+  switch (key) {
     case 'potentialDelay':
     case 'advancedMath':
     case 'medicalConcern':
@@ -84,10 +76,11 @@ export function forHumanAttr(key, val) {
     case 'newStudent':
     case 'hmp':
     case 'asp':
-      return `${translations[key]}: ${getYN(val)}`
+      return `${studentTranslations[key]}: ${(val === 0) ? 'No' : 'Yes'}`
     case 'behavior':
     case 'workEthic':
-      return `${translations[key]}: ${getCheckMinusPlus(val)}`
+      const mark = (val === 0) ? '-' : (val === 1) ? '\u2713' : '+'
+      return `${studentTranslations[key]}: ${mark}`
     case 'sex':
     case 'mathBench':
     case 'cogAT':
@@ -95,14 +88,13 @@ export function forHumanAttr(key, val) {
     case 'elaTotal':
     case 'mathTotal':
     case 'behaviorObservation':
-      return `${translations[key]}: ${val}`
+    case 'dial4':
+      return `${studentTranslations[key]}: ${val}`
+    case 'age':
+      return `${studentTranslations[key]}: ${round(val / 12, 0)} y. ${round(val % 12, 0)} mo.`
     default:
       return `${key}: ${val}`
   }
-}
-
-export function studentDisplayKey(key){
-  return !['name', 'firstName', 'lastName', 'weightedScore', 'weighted_score', 'behavior_score', 'behaviorScore'].includes(key)
 }
 
 
