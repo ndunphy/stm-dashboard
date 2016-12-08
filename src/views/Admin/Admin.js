@@ -4,6 +4,7 @@ import { Panel } from 'react-bootstrap'
 import './Admin.css'
 
 export class Admin extends React.Component {
+
 	static contextTypes = {
 		router: T.object
 	}
