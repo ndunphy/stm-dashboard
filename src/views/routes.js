@@ -18,12 +18,13 @@ import Grades from './Grades/Grades'
 import Section from './Section/Section'
 import GradeSections from './GradeSections/GradeSections'
 import Student from './Student/Student'
+import BulkEdit from './BulkEdit/BulkEdit'
 import Unauthorized from './Unauthorized/Unauthorized'
 import AccessPending from './AccessPending/AccessPending'
 
 const auth = new AuthService(
-  process.env.REACT_APP_AUTH0_CLIENT_ID,
-  process.env.REACT_APP_AUTH0_DOMAIN)
+    process.env.REACT_APP_AUTH0_CLIENT_ID,
+    process.env.REACT_APP_AUTH0_DOMAIN)
 
 const requireAuth = (nextState, replace, callback) => {
   if (!auth.loggedIn()) {
@@ -84,6 +85,7 @@ export const makeRoutes = () => {
       <Route path="sections/:grade/:sectionID" component={Section} onEnter={requireAuth} />
       <Route path="login" component={Login} />
       <Route path="students/:studentID" component={Student} onEnter={requireAuth} />
+      <Route path="students/bulk-edit/:sectionID/:studentID/:mode" component={BulkEdit} onEnter={requireAuth} />
       <Route path="access_token=:token" component={Login} />
       <Route path="unauthorized" component={Unauthorized} />
       <Route path="access-pending" component={AccessPending} />
