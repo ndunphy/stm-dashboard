@@ -36,7 +36,6 @@ export class AddStudents extends React.Component {
       method: 'GET'
     })
       .then(response => {
-
         if (response.ok) {
           response.json().then(grade => {
             // bind the values of section dropdown to 
@@ -138,15 +137,25 @@ export class AddStudents extends React.Component {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(this.state.newStudent)
-        })
-        .then(() => {
-          this.context.addNotification({
-            title: 'Success',
-            message: 'Successfully created new student',
-            level: 'success'
+          body: JSON.stringify({
+            student: this.state.newStudent
           })
-          this.context.router.push(`/students/${this.state.newStudent.id}`)
+        })
+        .then(response => {
+          if (response.ok) {
+            this.context.addNotification({
+              title: 'Success',
+              message: 'Successfully created new student',
+              level: 'success'
+            })
+            this.context.router.push(`/students/${this.state.newStudent.id}`)
+          } else {
+            this.context.addNotification({
+              title: 'Error',
+              message: 'Failed to create new student',
+              level: 'error'
+            })
+          }
         })
         .catch(err => {
           console.error(err)
