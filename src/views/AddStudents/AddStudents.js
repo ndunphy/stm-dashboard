@@ -138,9 +138,7 @@ export class AddStudents extends React.Component {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({
-            student: this.state.newStudent
-          })
+          body: JSON.stringify(this.state.newStudent)
         })
         .then(() => {
           this.context.addNotification({

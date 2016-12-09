@@ -10,7 +10,7 @@ export class StudentEditForm extends React.Component {
 
   static propTypes = {
     profile: T.object,
-    studentID: T.string,
+    student: T.object,
     toggleEdit: T.func,
     saveChanges: T.func
   }
@@ -19,33 +19,8 @@ export class StudentEditForm extends React.Component {
     super(props)
 
     this.state = {
-      student: {}
+      student: JSON.parse(JSON.stringify(props.student))
     }
-
-    fetch(`${process.env.REACT_APP_SERVER_ADDRESS}/api/students/${this.props.studentID}`, {
-      method: 'GET'
-    }).then(response => {
-      if (response.ok) {
-        response.json().then(student => {
-          this.setState({
-            student: student
-          })
-        })
-      } else {
-        this.context.addNotification({
-          title: 'Error',
-          message: 'Failed to fetch student',
-          level: 'error'
-        })
-      }
-    }).catch(err => {
-      console.error(err)
-      this.context.addNotification({
-        title: 'Error',
-        message: 'Failed to fetch student',
-        level: 'error'
-      })
-    })
   }
 
   getEditForm() {
