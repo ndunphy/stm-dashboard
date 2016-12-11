@@ -1,8 +1,11 @@
 import React, { PropTypes as T } from 'react'
 import AuthService from '../../utils/AuthService'
 import { Grid, Row, Col, Panel } from 'react-bootstrap'
-import { Table, FormGroup, FormControl, Button, Breadcrumb } from 'react-bootstrap'
+import DatePicker from "react-bootstrap-date-picker";
+import { Table, FormGroup, FormControl, Button, Breadcrumb, ControlLabel } from 'react-bootstrap'
 import './AddStudents.css'
+
+
 
 export class AddStudents extends React.Component {
   static contextTypes = {
@@ -25,7 +28,7 @@ export class AddStudents extends React.Component {
         id: null,
         firstName: null,
         lastName: null,
-        sex: null,
+        sex: 'M',
         dob: null
       },
       options: [],
@@ -56,6 +59,17 @@ export class AddStudents extends React.Component {
         console.error(err)
         this.notifyError('Failed to fetch sections')
       })
+  }
+
+  updateCreateDOB(value, formattedValue){
+    console.log(value)
+    console.log(formattedValue)
+    let tempMember = this.state.newStudent
+    tempMember['dob'] = formattedValue
+    tempMember['dobValue'] = value
+    this.setState({
+      newStudent: tempMember,
+    })
   }
 
   updateCreateField(field, event) {
@@ -96,15 +110,8 @@ export class AddStudents extends React.Component {
           this.notifyError('Failed to fetch sections')
         })
     }
+    tempMember[field] = event.target.value
 
-    if (field === 'sectionID') {
-      tempMember.sectionID = event.target.value
-      this.setState({
-        newStudent: tempMember
-      })
-    } else {
-      tempMember[field] = event.target.value
-    }
 
     this.setState({
       newStudent: tempMember
@@ -113,8 +120,9 @@ export class AddStudents extends React.Component {
 
 
 
+
   createStudent() {
-    if (!this.state.newStudent.firstName || !this.state.newStudent.lastName || !this.state.newStudent.id || !this.state.newStudent.sectionID) {
+    if (!this.state.newStudent.firstName || !this.state.newStudent.lastName || !this.state.newStudent.id || !this.state.newStudent.sectionID || !this.state.newStudent.dob || !this.state.newStudent.sex) {
       let error = ''
       if (!this.state.newStudent.firstName) {
         error = 'no name provided'
@@ -126,12 +134,21 @@ export class AddStudents extends React.Component {
       else if (!this.state.newStudent.id) {
         error = 'no student ID'
       }
+      else if (!this.state.newStudent.dob) {
+        error = 'no student date of birth'
+      }
+      else if (!this.state.newStudent.sex) {
+        error = 'no student gender'
+      }
       this.context.addNotification({
         title: 'Error',
         message: 'Failed to create new student, ' + error,
         level: 'error'
       })
     } else {
+      let tempStudent = this.state.newStudent
+      delete tempStudent['dobValue']
+      console.log(tempStudent)
       fetch(`${process.env.REACT_APP_SERVER_ADDRESS}/api/students`,
         {
           method: 'POST',
@@ -139,16 +156,24 @@ export class AddStudents extends React.Component {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            student: this.state.newStudent
+            student: tempStudent
           })
         })
-        .then(() => {
-          this.context.addNotification({
-            title: 'Success',
-            message: 'Successfully created new student',
-            level: 'success'
-          })
-          this.context.router.push(`/students/${this.state.newStudent.id}`)
+        .then(response => {
+          if(response.ok){
+            this.context.addNotification({
+              title: 'Success',
+              message: 'Successfully created new student',
+              level: 'success'
+            })
+            this.context.router.push(`/students/${this.state.newStudent.id}`)
+          } else{
+            this.context.addNotification({
+              title: 'Error',
+              message: 'Failed to create new student',
+              level: 'error'
+            })  
+          }
         })
         .catch(err => {
           console.error(err)
@@ -185,6 +210,8 @@ export class AddStudents extends React.Component {
                       <th>First Name</th>
                       <th>Last Name</th>
                       <th>ID</th>
+                      <th>Gender</th>
+                      <th>DOB</th>
                       <th>Grade</th>
                       <th>Section</th>
                       <th>Action</th>
@@ -222,6 +249,33 @@ export class AddStudents extends React.Component {
                             />
                         </FormGroup>
                       </td>
+
+
+                      <td>
+
+                        <FormGroup controlId="formSelectSex">
+
+                          <FormControl
+
+                            componentClass="select"
+                            value={this.state.newStudent.sex ? this.state.newStudent.sex : 'M'}
+                            onChange={this.updateCreateField.bind(this, 'sex')}>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+
+                          </FormControl>
+                        </FormGroup>
+                      </td>
+                      <td>
+
+                       <FormGroup controlId="formSelectDOB">
+                        <DatePicker id="datepicker"
+                          value={this.state.newStudent.dobValue ? this.state.newStudent.dobValue : new Date().toISOString()}
+                          onChange={this.updateCreateDOB.bind(this)}/>
+                      </FormGroup>
+                      </td>
+                     
+
 
                       <td>
 
