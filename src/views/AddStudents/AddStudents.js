@@ -61,7 +61,7 @@ export class AddStudents extends React.Component {
       })
   }
 
-  updateCreateDOB(value, formattedValue){
+  updateCreateDOB(value, formattedValue) {
     console.log(value)
     console.log(formattedValue)
     let tempMember = this.state.newStudent
@@ -160,19 +160,19 @@ export class AddStudents extends React.Component {
           })
         })
         .then(response => {
-          if(response.ok){
+          if (response.ok) {
             this.context.addNotification({
               title: 'Success',
               message: 'Successfully created new student',
               level: 'success'
             })
             this.context.router.push(`/students/${this.state.newStudent.id}`)
-          } else{
+          } else {
             this.context.addNotification({
               title: 'Error',
               message: 'Failed to create new student',
               level: 'error'
-            })  
+            })
           }
         })
         .catch(err => {
@@ -211,6 +211,9 @@ export class AddStudents extends React.Component {
                       <th>Last Name</th>
                       <th>ID</th>
                       <th>Gender</th>
+
+                    </tr>
+                    <tr>
                       <th>DOB</th>
                       <th>Grade</th>
                       <th>Section</th>
@@ -266,15 +269,31 @@ export class AddStudents extends React.Component {
                           </FormControl>
                         </FormGroup>
                       </td>
-                      <td>
 
-                       <FormGroup controlId="formSelectDOB">
-                        <DatePicker id="datepicker"
-                          value={this.state.newStudent.dobValue ? this.state.newStudent.dobValue : new Date().toISOString()}
-                          onChange={this.updateCreateDOB.bind(this)}/>
-                      </FormGroup>
+                    
+                   
+                    </tr>
+ </tbody>
+                     <thead>
+                
+                    <tr>
+                      <th>DOB</th>
+                      <th>Grade</th>
+                      <th>Section</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                <tbody>
+
+                    <tr>
+                      <td>
+                        <FormGroup controlId="formSelectDOB">
+                          <DatePicker id="datepicker"
+                            value={this.state.newStudent.dobValue ? this.state.newStudent.dobValue : new Date().toISOString()}
+                            onChange={this.updateCreateDOB.bind(this)} />
+                        </FormGroup>
                       </td>
-                     
+
 
 
                       <td>
@@ -310,7 +329,7 @@ export class AddStudents extends React.Component {
                             }
                           </FormControl>
                         </FormGroup>
-                      }</td>
+                      } </td>
                       <td><Button bsStyle='primary' onClick={this.createStudent.bind(this)}>ADD STUDENT</Button></td>
                     </tr>
                   </tbody>
