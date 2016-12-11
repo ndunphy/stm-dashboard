@@ -213,12 +213,7 @@ export class AddStudents extends React.Component {
                       <th>Gender</th>
 
                     </tr>
-                    <tr>
-                      <th>DOB</th>
-                      <th>Grade</th>
-                      <th>Section</th>
-                      <th>Action</th>
-                    </tr>
+                   
                   </thead>
                   <tbody>
                     <tr>
