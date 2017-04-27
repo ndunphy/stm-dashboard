@@ -68,6 +68,7 @@ export const studentTranslations = {
   comments: 'Comments'
 }
 
+
 export function forHumanAttr(key, val) {
   //first switch non test scores that expect an empty string
   switch (key) {
@@ -78,7 +79,7 @@ export function forHumanAttr(key, val) {
     case 'newStudent':
     case 'hmp':
     case 'asp':
-      return (`${studentTranslations[key]}: 
+      return (`${studentTranslations[key]}:
               ${(parseInt(val, 10)) ? 'Yes' : 'No'}`)
     default:
       // for rest of the keys, an empty string is ok

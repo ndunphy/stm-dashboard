@@ -23,6 +23,8 @@ import Unauthorized from './Unauthorized/Unauthorized'
 import AccessPending from './AccessPending/AccessPending'
 import ChangeYear from './ChangeYear/ChangeYear'
 import Reports from './Reports/Reports'
+import StudentProfile from './StudentProfile/StudentProfile'
+
 
 const auth = new AuthService(
   process.env.REACT_APP_AUTH0_CLIENT_ID,
@@ -99,6 +101,8 @@ export const makeRoutes = () => {
       <Route path="access_token=:token" component={Login} />
       <Route path="unauthorized" component={Unauthorized} />
       <Route path="access-pending" component={AccessPending} />
+
+      <Route path="studentprofile/:studentID" component={StudentProfile} onEnter={requireAuth} />
       <Route path="*" component={NotFound} />
 
     </Route>
