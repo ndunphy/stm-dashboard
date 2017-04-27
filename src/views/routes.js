@@ -22,6 +22,7 @@ import BulkEdit from './BulkEdit/BulkEdit'
 import Unauthorized from './Unauthorized/Unauthorized'
 import AccessPending from './AccessPending/AccessPending'
 import ChangeYear from './ChangeYear/ChangeYear'
+import Reports from './Reports/Reports'
 
 const auth = new AuthService(
   process.env.REACT_APP_AUTH0_CLIENT_ID,
@@ -34,7 +35,7 @@ const requireAuth = (nextState, replace, callback) => {
   } else {
     auth.getUser()
       .then(user => {
-        
+
         const accessLevel = parseInt(user.accessLevel, 10)
 
         if (accessLevel === ACCESS.PENDING) {
@@ -77,6 +78,10 @@ export const makeRoutes = () => {
       <Route path="landing" component={Landing} onEnter={requireAuth} />
       <Route path="run-placements" component={RunPlacements} onEnter={requireAuth} />
       <Route path="placement/:grade" component={Placement} onEnter={requireAuth} />
+      <Route path="reports" component={Reports} onEnter={requireAuth} />
+      <Route path="reports/filter-teacher" component={Reports} onEnter={requireAuth} />
+      <Route path="reports/filter-grade" component={Reports} onEnter={requireAuth} />
+      <Route path="reports/filter-students" component={Reports} onEnter={requireAuth} />
       <Route path="admin/delete-students" component={DeleteStudents} onEnter={requireAuth} />
       <Route path="admin/add-students" component={AddStudents} onEnter={requireAuth} />
       <Route path="admin/upload" component={Upload} onEnter={requireAuth} />
@@ -95,6 +100,7 @@ export const makeRoutes = () => {
       <Route path="unauthorized" component={Unauthorized} />
       <Route path="access-pending" component={AccessPending} />
       <Route path="*" component={NotFound} />
+
     </Route>
   )
 }
