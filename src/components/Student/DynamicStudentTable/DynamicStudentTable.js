@@ -131,7 +131,8 @@ export class DynamicStudentTable extends React.Component {
                       <td>
                         <Button
                           block
-                          bsStyle="primary">
+                          bsStyle="primary"
+                          onClick={() => { this.context.router.push(`/studentprofile/${student.id}`)}}>
                           View Profile
                         </Button>
                       </td>
